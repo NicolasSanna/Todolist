@@ -10,6 +10,7 @@ using Todolist.Models;
 
 namespace Todolist.Controllers
 {
+    [Route("Categories")]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,6 +21,7 @@ namespace Todolist.Controllers
         }
 
         // GET: Categories
+        [Route("Index")]
         public async Task<IActionResult> Index()
         {
             return _context.Categories != null ?
@@ -28,6 +30,7 @@ namespace Todolist.Controllers
         }
 
         // GET: Categories/Details/5
+        [Route("Voir/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -46,6 +49,7 @@ namespace Todolist.Controllers
         }
 
         // GET: Categories/Create
+        [Route("Creer")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +58,7 @@ namespace Todolist.Controllers
         // POST: Categories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("Creer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId,Label")] Category category)
@@ -68,6 +73,7 @@ namespace Todolist.Controllers
         }
 
         // GET: Categories/Edit/5
+        [Route("Editer/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -86,6 +92,7 @@ namespace Todolist.Controllers
         // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("Editer/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Label")] Category category)
@@ -119,6 +126,7 @@ namespace Todolist.Controllers
         }
 
         // GET: Categories/Delete/5
+        [Route("Supprimer/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -137,6 +145,7 @@ namespace Todolist.Controllers
         }
 
         // POST: Categories/Delete/5
+        [Route("Supprimer/{id}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

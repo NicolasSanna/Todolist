@@ -74,6 +74,7 @@ namespace Todolist.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
                 todo.UserId = user.Id;
+                todo.CreatedDate = DateTime.Now;
                 _context.Add(todo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -127,6 +128,7 @@ namespace Todolist.Controllers
             {
                 try
                 {
+                    todo.CreatedDate = DateTime.Now;
                     _context.Update(todo);
                     await _context.SaveChangesAsync();
                 }
