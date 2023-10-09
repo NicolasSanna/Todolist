@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nicol\\OneDrive\\Bureau\\Todolist\\Todolist.csproj": {}
+    "C:\\wamp64\\www\\Todolist\\Todolist.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nicol\\OneDrive\\Bureau\\Todolist\\Todolist.csproj": {
+    "C:\\wamp64\\www\\Todolist\\Todolist.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nicol\\OneDrive\\Bureau\\Todolist\\Todolist.csproj",
+        "projectUniqueName": "C:\\wamp64\\www\\Todolist\\Todolist.csproj",
         "projectName": "Todolist",
-        "projectPath": "C:\\Users\\Nicol\\OneDrive\\Bureau\\Todolist\\Todolist.csproj",
+        "projectPath": "C:\\wamp64\\www\\Todolist\\Todolist.csproj",
         "packagesPath": "C:\\Users\\Nicol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nicol\\OneDrive\\Bureau\\Todolist\\obj\\",
+        "outputPath": "C:\\wamp64\\www\\Todolist\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,11 +46,11 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.11, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
