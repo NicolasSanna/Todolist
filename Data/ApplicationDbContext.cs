@@ -23,10 +23,10 @@ namespace Todolist.Data
                 .HasForeignKey(t => t.CategoryId);
 
             modelBuilder.Entity<Todo>()
-            .HasOne(t => t.User)
-            .WithMany()
-            .HasForeignKey(t => t.UserId)
-            .IsRequired(true);
+                .HasOne(t => t.User)
+                .WithMany()
+                .HasForeignKey(t => t.UserId)
+                .IsRequired(true);
         }
     }
 }

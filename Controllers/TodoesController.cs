@@ -43,10 +43,13 @@ namespace Todolist.Controllers
                 return NotFound();
             }
 
+            var user = await _userManager.GetUserAsync(User);
             var todo = await _context.Todos
                 .Include(t => t.Category)
                 .Include(t => t.User)
-                .FirstOrDefaultAsync(m => m.TodoId == id);
+                .Where(t => t.UserId == user.Id)
+                .FirstOrDefaultAsync(t => t.TodoId == id);
+
             if (todo == null)
             {
                 return NotFound();
@@ -73,9 +76,12 @@ namespace Todolist.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
+
                 todo.UserId = user.Id;
                 todo.CreatedDate = DateTime.Now;
+
                 _context.Add(todo);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -102,12 +108,19 @@ namespace Todolist.Controllers
                 return NotFound();
             }
 
-            var todo = await _context.Todos.FindAsync(id);
+            var user = await _userManager.GetUserAsync(User);
+            var todo = await _context.Todos
+                .Include(t => t.Category)
+                .Include(t => t.User)
+                .Where(t => t.UserId == user.Id)
+                .FirstOrDefaultAsync(t => t.TodoId == id);
+
             if (todo == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", todo.CategoryId);
+
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", todo.UserId);
             return View(todo);
         }
@@ -145,8 +158,10 @@ namespace Todolist.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", todo.CategoryId);
+
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", todo.UserId);
+
             return View(todo);
         }
 
@@ -158,10 +173,11 @@ namespace Todolist.Controllers
                 return NotFound();
             }
 
+            var user = await _userManager.GetUserAsync(User);
             var todo = await _context.Todos
-                .Include(t => t.Category)
-                .Include(t => t.User)
-                .FirstOrDefaultAsync(m => m.TodoId == id);
+                .Where(t => t.UserId == user.Id)
+                .FirstOrDefaultAsync(t => t.TodoId == id);
+
             if (todo == null)
             {
                 return NotFound();
@@ -179,7 +195,12 @@ namespace Todolist.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Todos'  is null.");
             }
-            var todo = await _context.Todos.FindAsync(id);
+
+            var user = await _userManager.GetUserAsync(User);
+            var todo = await _context.Todos
+                .Where(t => t.UserId == user.Id)
+                .FirstOrDefaultAsync(t => t.TodoId == id);
+
             if (todo != null)
             {
                 _context.Todos.Remove(todo);
