@@ -11,8 +11,8 @@ using Todolist.Data;
 namespace Todolist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231023122246_Creation")]
-    partial class Creation
+    [Migration("20231023165112_Create")]
+    partial class Create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -259,6 +259,9 @@ namespace Todolist.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FileName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")

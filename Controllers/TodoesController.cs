@@ -72,7 +72,7 @@ namespace Todolist.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TodoId,Title,Description,CreatedDate,CategoryId")] Todo todo, List<int> SelectedThemes)
+        public async Task<IActionResult> Create([Bind("TodoId,Title,Description,CreatedDate,CategoryId")] Todo todo, List<int> SelectedThemes, IFormFile? fileName)
         {
             if (ModelState.IsValid)
             {
@@ -81,21 +81,49 @@ namespace Todolist.Controllers
                 todo.UserId = user.Id;
                 todo.CreatedDate = DateTime.Now;
 
+                // Vérifie si 'fileName' n'est pas null et que sa taille est supérieure à zéro
+                if (fileName != null && fileName.Length > 0)
+                {
+                    // Construit le chemin complet du dossier de téléchargement
+                    var uploadPath = Path.Combine("wwwroot/images");
+
+                    // Génère un nom de fichier unique en combinant un nouveau GUID avec le nom de fichier d'origine
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(fileName.FileName);
+
+                    // Combine le chemin de téléchargement avec le nom de fichier unique pour obtenir le chemin complet du fichier
+                    var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+                    // Crée un flux de fichier et copie le contenu de 'fileName' dans ce flux
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await fileName.CopyToAsync(fileStream);
+                    }
+
+                    // Enregistre le nom de fichier unique dans la propriété 'FileName' de l'objet 'todo'
+                    todo.FileName = uniqueFileName;
+                }
+
                 _context.Add(todo);
                 await _context.SaveChangesAsync(); // Sauvegardez d'abord le Todo pour obtenir un TodoId
 
+                // Vérifie si la liste des thèmes sélectionnés n'est pas nulle
                 if (SelectedThemes != null)
                 {
+                    // Parcours des IDs de thèmes sélectionnés
                     foreach (var themeId in SelectedThemes)
                     {
+                        // Crée une nouvelle relation TodoTheme avec l'ID du Todo actuel et l'ID du thème sélectionné
                         var todoTheme = new TodoTheme
                         {
                             TodoId = todo.TodoId,
                             ThemeId = themeId
                         };
+
+                        // Ajoute la relation TodoTheme à la base de données
                         _context.TodoThemes.Add(todoTheme);
                     }
 
+                    // Enregistre les changements dans la base de données, y compris les nouvelles relations TodoTheme
                     await _context.SaveChangesAsync(); // Sauvegardez les TodoThemes après avoir ajouté le Todo
                 }
 
@@ -148,7 +176,7 @@ namespace Todolist.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TodoId,Title,Description,CreatedDate,CategoryId")] Todo todo, List<int> SelectedThemes)
+        public async Task<IActionResult> Edit(int id, [Bind("TodoId,Title,Description,CreatedDate,CategoryId")] Todo todo, List<int> SelectedThemes, IFormFile? fileName)
         {
             if (id != todo.TodoId)
             {
@@ -161,10 +189,40 @@ namespace Todolist.Controllers
             {
                 try
                 {
+                    var existingTodo = await _context.Todos.FindAsync(id);
+
+                    // Supprimer l'ancienne image si elle existe
+                    if (!string.IsNullOrEmpty(existingTodo.FileName))
+                    {
+                        var imagePath = Path.Combine("wwwroot/images", existingTodo.FileName);
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+
+                    // Traitement de la nouvelle image
+                    if (fileName != null && fileName.Length > 0)
+                    {
+                        var uploadPath = Path.Combine("wwwroot/images");
+                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(fileName.FileName);
+                        var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await fileName.CopyToAsync(fileStream);
+                        }
+
+                        todo.FileName = uniqueFileName;
+                    }
+
+                    // Mettez à jour les propriétés du Todo
                     todo.CreatedDate = DateTime.Now;
                     todo.UserId = user.Id;
 
-                    // Mettez à jour les propriétés du Todo
+                    // Détacher l'entité existante du contexte
+                    _context.Entry(existingTodo).State = EntityState.Detached;
+
                     _context.Update(todo);
 
                     // Mettez à jour les TodoThemes
@@ -200,11 +258,7 @@ namespace Todolist.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-
-
             ViewData["Category"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", todo.UserId);
-
             return View(todo);
         }
 
@@ -247,7 +301,21 @@ namespace Todolist.Controllers
 
             if (todo != null)
             {
+                // Vérifier si une image est associée à l'objet Todo
+                var existingTodo = await _context.Todos.FindAsync(id);
+   
+                if (!string.IsNullOrEmpty(todo.FileName))
+                {
+                    // Construire le chemin complet de l'image
+                    var imagePath = Path.Combine("wwwroot/images", existingTodo.FileName);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
+
                 _context.Todos.Remove(todo);
+                await _context.SaveChangesAsync();
             }
 
             await _context.SaveChangesAsync();

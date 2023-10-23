@@ -1,12 +1,12 @@
 ﻿@model Todolist.Models.Todo
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Supprimer";
 }
 
-<h1>Delete</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Êtes-vous sûr de vouloir supprimer ce Todo?</h3>
 <div>
     <h4>Todo</h4>
     <hr />
@@ -54,9 +54,9 @@
         </ul>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-action="Supprimer">
         <input type="hidden" asp-for="TodoId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Revenir à la liste</a>
     </form>
 </div>

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Détails</h1>
 
 <div>
     <h4>Todo</h4>
@@ -40,6 +40,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.User.Id)
         </dd>
+        @if (!string.IsNullOrEmpty(Model.FileName))
+        {
+            <img src="@Url.Content("~/images/" + Model.FileName)" alt="Image d'illustration">
+        }
         <dt class="col-sm-10">Thèmes</dt>
         <br />
         <ul>
@@ -54,6 +58,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.TodoId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.TodoId">Éditer</a> |
+    <a asp-action="Index">Revenir à la liste</a>
 </div>

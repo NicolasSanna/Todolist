@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\wamp64\\www\\TodoList\\Todolist.csproj": {}
+    "C:\\wamp64\\www\\Todolist\\Todolist.csproj": {}
   },
   "projects": {
-    "C:\\wamp64\\www\\TodoList\\Todolist.csproj": {
+    "C:\\wamp64\\www\\Todolist\\Todolist.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\wamp64\\www\\TodoList\\Todolist.csproj",
+        "projectUniqueName": "C:\\wamp64\\www\\Todolist\\Todolist.csproj",
         "projectName": "Todolist",
-        "projectPath": "C:\\wamp64\\www\\TodoList\\Todolist.csproj",
+        "projectPath": "C:\\wamp64\\www\\Todolist\\Todolist.csproj",
         "packagesPath": "C:\\Users\\Nicol\\.nuget\\packages\\",
-        "outputPath": "C:\\wamp64\\www\\TodoList\\obj\\",
+        "outputPath": "C:\\wamp64\\www\\Todolist\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",

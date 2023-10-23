@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Todolist.Migrations
 {
     /// <inheritdoc />
-    public partial class Creation : Migration
+    public partial class Create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -192,7 +192,8 @@ namespace Todolist.Migrations
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false)
+                    UserId = table.Column<string>(type: "TEXT", nullable: false),
+                    FileName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

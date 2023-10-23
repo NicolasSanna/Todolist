@@ -19,5 +19,7 @@ namespace Todolist.Models
         public IdentityUser? User { get; set; }
 
         public ICollection<TodoTheme>? TodoThemes { get; set; }
+
+        public string? FileName { get; set; }
     }
 }
