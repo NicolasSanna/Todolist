@@ -17,5 +17,7 @@ namespace Todolist.Models
         // Ajoutez cette propriété pour stocker l'ID de l'utilisateur
         public string? UserId { get; set; }
         public IdentityUser? User { get; set; }
+
+        public ICollection<TodoTheme>? TodoThemes { get; set; }
     }
 }

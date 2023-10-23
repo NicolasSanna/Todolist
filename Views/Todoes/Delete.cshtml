@@ -41,6 +41,17 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.User.Id)
         </dd>
+        <dt class="col-sm-10">Thèmes</dt>
+        <br />
+        <ul>
+            @foreach (var todoTheme in Model.TodoThemes)
+            {
+                if (todoTheme != null)
+                {
+                    <li>@todoTheme.Theme.Name</li>
+                }
+            }
+        </ul>
     </dl>
     
     <form asp-action="Delete">

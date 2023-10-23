@@ -11,8 +11,8 @@ using Todolist.Data;
 namespace Todolist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231016102609_Sqlite")]
-    partial class Sqlite
+    [Migration("20231023122246_Creation")]
+    partial class Creation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -231,6 +231,20 @@ namespace Todolist.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Todolist.Models.Theme", b =>
+                {
+                    b.Property<int>("ThemeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ThemeId");
+
+                    b.ToTable("Themes");
+                });
+
             modelBuilder.Entity("Todolist.Models.Todo", b =>
                 {
                     b.Property<int>("TodoId")
@@ -262,6 +276,21 @@ namespace Todolist.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Todos");
+                });
+
+            modelBuilder.Entity("Todolist.Models.TodoTheme", b =>
+                {
+                    b.Property<int>("TodoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ThemeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("TodoId", "ThemeId");
+
+                    b.HasIndex("ThemeId");
+
+                    b.ToTable("TodoThemes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -334,9 +363,38 @@ namespace Todolist.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Todolist.Models.TodoTheme", b =>
+                {
+                    b.HasOne("Todolist.Models.Theme", "Theme")
+                        .WithMany("TodoThemes")
+                        .HasForeignKey("ThemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Todolist.Models.Todo", "Todo")
+                        .WithMany("TodoThemes")
+                        .HasForeignKey("TodoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Theme");
+
+                    b.Navigation("Todo");
+                });
+
             modelBuilder.Entity("Todolist.Models.Category", b =>
                 {
                     b.Navigation("Todos");
+                });
+
+            modelBuilder.Entity("Todolist.Models.Theme", b =>
+                {
+                    b.Navigation("TodoThemes");
+                });
+
+            modelBuilder.Entity("Todolist.Models.Todo", b =>
+                {
+                    b.Navigation("TodoThemes");
                 });
 #pragma warning restore 612, 618
         }

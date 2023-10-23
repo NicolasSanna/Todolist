@@ -29,6 +29,19 @@
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label class="control-label">Themes</label>
+                @foreach (var theme in (SelectList)ViewData["Themes"])
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="SelectedThemes" value="@theme.Value"
+                            @(Model.TodoThemes != null && Model.TodoThemes.Any(tt => tt.ThemeId.ToString() == theme.Value) ? "checked" : "")>
+                            @theme.Text
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

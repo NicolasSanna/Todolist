@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Todolist.Migrations
 {
     /// <inheritdoc />
-    public partial class Sqlite : Migration
+    public partial class Creation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,6 +61,19 @@ namespace Todolist.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Themes",
+                columns: table => new
+                {
+                    ThemeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Themes", x => x.ThemeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -198,6 +211,30 @@ namespace Todolist.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TodoThemes",
+                columns: table => new
+                {
+                    TodoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ThemeId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TodoThemes", x => new { x.TodoId, x.ThemeId });
+                    table.ForeignKey(
+                        name: "FK_TodoThemes_Themes_ThemeId",
+                        column: x => x.ThemeId,
+                        principalTable: "Themes",
+                        principalColumn: "ThemeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TodoThemes_Todos_TodoId",
+                        column: x => x.TodoId,
+                        principalTable: "Todos",
+                        principalColumn: "TodoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -244,6 +281,11 @@ namespace Todolist.Migrations
                 name: "IX_Todos_UserId",
                 table: "Todos",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TodoThemes_ThemeId",
+                table: "TodoThemes",
+                column: "ThemeId");
         }
 
         /// <inheritdoc />
@@ -265,10 +307,16 @@ namespace Todolist.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Todos");
+                name: "TodoThemes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Themes");
+
+            migrationBuilder.DropTable(
+                name: "Todos");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

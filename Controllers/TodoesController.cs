@@ -27,12 +27,13 @@ namespace Todolist.Controllers
         // GET: Todoes
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(User);
-            // Récupérer les todos de l'utilisateur connecté
+            var user = await _userManager.GetUserAsync(User); // Récupération de l'utilisateur.
             var todos = _context.Todos
-                .Include(t => t.Category)
-                .Where(t => t.UserId == user.Id);
-            return View(await todos.ToListAsync());
+                .Include(t => t.Category) // Inclusion de la catégorie associée à chaque todo.
+                .Include(t => t.TodoThemes).ThenInclude(tt => tt.Theme) // Inclusion des thèmes associés à chaque todo.
+                .Where(t => t.UserId == user.Id); // Filtrage des todos pour l'utilisateur actuel.
+
+            return View(await todos.ToListAsync()); // Affichage de la vue Index avec la liste des todos.
         }
 
         // GET: Todoes/Details/5
@@ -46,7 +47,7 @@ namespace Todolist.Controllers
             var user = await _userManager.GetUserAsync(User);
             var todo = await _context.Todos
                 .Include(t => t.Category)
-                .Include(t => t.User)
+                .Include(t => t.TodoThemes).ThenInclude(tt => tt.Theme)
                 .Where(t => t.UserId == user.Id)
                 .FirstOrDefaultAsync(t => t.TodoId == id);
 
@@ -63,6 +64,7 @@ namespace Todolist.Controllers
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["Themes"] = new SelectList(_context.Themes, "ThemeId", "Name");
             return View();
         }
 
@@ -71,7 +73,7 @@ namespace Todolist.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TodoId,Title,Description,CreatedDate,CategoryId")] Todo todo)
+        public async Task<IActionResult> Create([Bind("TodoId,Title,Description,CreatedDate,CategoryId")] Todo todo, List<int> SelectedThemes)
         {
             if (ModelState.IsValid)
             {
@@ -81,8 +83,23 @@ namespace Todolist.Controllers
                 todo.CreatedDate = DateTime.Now;
 
                 _context.Add(todo);
+                await _context.SaveChangesAsync(); // Sauvegardez d'abord le Todo pour obtenir un TodoId
 
-                await _context.SaveChangesAsync();
+                if (SelectedThemes != null)
+                {
+                    foreach (var themeId in SelectedThemes)
+                    {
+                        var todoTheme = new TodoTheme
+                        {
+                            TodoId = todo.TodoId,
+                            ThemeId = themeId
+                        };
+                        _context.TodoThemes.Add(todoTheme);
+                    }
+
+                    await _context.SaveChangesAsync(); // Sauvegardez les TodoThemes après avoir ajouté le Todo
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -97,6 +114,7 @@ namespace Todolist.Controllers
                 Console.WriteLine(error);
             }*/
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
+            ViewData["Themes"] = new SelectList(_context.Themes, "ThemeId", "Name");
             return View(todo);
         }
 
@@ -112,6 +130,7 @@ namespace Todolist.Controllers
             var todo = await _context.Todos
                 .Include(t => t.Category)
                 .Include(t => t.User)
+                .Include(t => t.TodoThemes) // Incluez les TodoThemes
                 .Where(t => t.UserId == user.Id)
                 .FirstOrDefaultAsync(t => t.TodoId == id);
 
@@ -122,6 +141,7 @@ namespace Todolist.Controllers
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", todo.UserId);
+            ViewData["Themes"] = new SelectList(_context.Themes, "ThemeId", "Name");
             return View(todo);
         }
 
@@ -130,19 +150,42 @@ namespace Todolist.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TodoId,Title,Description,CreatedDate,CategoryId,UserId")] Todo todo)
+        public async Task<IActionResult> Edit(int id, [Bind("TodoId,Title,Description,CreatedDate,CategoryId")] Todo todo, List<int> SelectedThemes)
         {
             if (id != todo.TodoId)
             {
                 return NotFound();
             }
 
+            var user = await _userManager.GetUserAsync(User);
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     todo.CreatedDate = DateTime.Now;
+                    todo.UserId = user.Id;
+
+                    // Mettez à jour les propriétés du Todo
                     _context.Update(todo);
+
+                    // Mettez à jour les TodoThemes
+                    var existingTodoThemes = _context.TodoThemes.Where(tt => tt.TodoId == id);
+                    _context.TodoThemes.RemoveRange(existingTodoThemes); // Supprimez les anciens TodoThemes
+
+                    if (SelectedThemes != null)
+                    {
+                        foreach (var themeId in SelectedThemes)
+                        {
+                            var todoTheme = new TodoTheme
+                            {
+                                TodoId = id,
+                                ThemeId = themeId
+                            };
+                            _context.TodoThemes.Add(todoTheme);
+                        }
+                    }
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -158,6 +201,8 @@ namespace Todolist.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", todo.UserId);
@@ -176,6 +221,7 @@ namespace Todolist.Controllers
             var user = await _userManager.GetUserAsync(User);
             var todo = await _context.Todos
                 .Where(t => t.UserId == user.Id)
+                .Include(t => t.TodoThemes).ThenInclude(tt => tt.Theme)
                 .FirstOrDefaultAsync(t => t.TodoId == id);
 
             if (todo == null)
