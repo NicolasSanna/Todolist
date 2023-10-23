@@ -62,8 +62,7 @@ namespace Todolist.Controllers
         // GET: Todoes/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["Category"] = new SelectList(_context.Categories, "CategoryId", "Label");
             ViewData["Themes"] = new SelectList(_context.Themes, "ThemeId", "Name");
             return View();
         }
@@ -113,7 +112,7 @@ namespace Todolist.Controllers
             {
                 Console.WriteLine(error);
             }*/
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
+            ViewData["Category"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
             ViewData["Themes"] = new SelectList(_context.Themes, "ThemeId", "Name");
             return View(todo);
         }
@@ -139,8 +138,7 @@ namespace Todolist.Controllers
                 return NotFound();
             }
 
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", todo.UserId);
+            ViewData["Category"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
             ViewData["Themes"] = new SelectList(_context.Themes, "ThemeId", "Name");
             return View(todo);
         }
@@ -204,7 +202,7 @@ namespace Todolist.Controllers
 
 
 
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
+            ViewData["Category"] = new SelectList(_context.Categories, "CategoryId", "Label", todo.CategoryId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", todo.UserId);
 
             return View(todo);
