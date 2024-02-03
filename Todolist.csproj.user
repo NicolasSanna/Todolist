@@ -16,5 +16,6 @@
     <Controller_SelectedScaffolderID>MvcControllerWithContextScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Common/MVC/Controller</Controller_SelectedScaffolderCategoryPath>
     <WebStackScaffolding_LayoutPageFile />
+    <NameOfLastUsedPublishProfile>C:\wamp64\www\Todolist\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
