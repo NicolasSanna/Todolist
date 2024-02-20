@@ -11986,11 +11986,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\wamp64\\www\\Todolist\\Todolist.csproj",
+      "projectUniqueName": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Todolist.csproj",
       "projectName": "Todolist",
-      "projectPath": "C:\\wamp64\\www\\Todolist\\Todolist.csproj",
+      "projectPath": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Todolist.csproj",
       "packagesPath": "C:\\Users\\Nicol\\.nuget\\packages\\",
-      "outputPath": "C:\\wamp64\\www\\Todolist\\obj\\",
+      "outputPath": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -12018,6 +12018,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -12078,7 +12083,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
