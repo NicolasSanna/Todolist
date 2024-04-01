@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|c:\\users\\nicol\\onedrive\\documents\\projets\\todolist\\views\\todoes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|solutionrelative:views\\todoes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|c:\\users\\nicol\\onedrive\\documents\\projets\\todolist\\controllers\\todoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|solutionrelative:controllers\\todoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|c:\\users\\nicol\\onedrive\\documents\\projets\\todolist\\todolist.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|solutionrelative:todolist.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -29,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|c:\\users\\nicol\\onedrive\\documents\\projets\\todolist\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|c:\\users\\nicol\\onedrive\\documents\\projets\\todolist\\controllers\\todoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F4D1A1D-1BEB-4697-B807-341332D5F3E9}|Todolist.csproj|solutionrelative:controllers\\todoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,32 +51,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Todolist",
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Views\\Todoes\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Todoes\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Views\\Todoes\\Create.cshtml",
+              "RelativeToolTip": "Views\\Todoes\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-29T10:10:50.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Todolist.csproj",
               "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Todolist.csproj",
               "RelativeDocumentMoniker": "Todolist.csproj",
               "ToolTip": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Todolist.csproj",
               "RelativeToolTip": "Todolist.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-02-24T19:56:53.616Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-24T19:56:53.616Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T19:49:33.816Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -84,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -96,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
@@ -108,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "20231023165112_Create.cs",
               "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Migrations\\20231023165112_Create.cs",
               "RelativeDocumentMoniker": "Migrations\\20231023165112_Create.cs",
@@ -120,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ApplicationDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "Migrations\\ApplicationDbContextModelSnapshot.cs",
@@ -132,15 +135,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "TodoesController.cs",
               "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Controllers\\TodoesController.cs",
               "RelativeDocumentMoniker": "Controllers\\TodoesController.cs",
               "ToolTip": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Controllers\\TodoesController.cs",
               "RelativeToolTip": "Controllers\\TodoesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
+              "ViewState": "AQIAAIcAAAAAAAAAAAAowBIAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-24T17:59:48.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-24T19:49:33.816Z"
             }
           ]
         }
