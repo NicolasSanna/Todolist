@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Todolist.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Todolist.bundle.scp.css"
+      "PackagePath": "staticwebassets\\Todolist.eq8jprll15.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\wwwroot\\css\\site.css",
@@ -247,6 +247,10 @@
     {
       "Id": "C:\\Users\\Nicol\\OneDrive\\Documents\\Projets\\Todolist\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Todolist.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Todolist.Microsoft.AspNetCore.StaticWebAssets.props",

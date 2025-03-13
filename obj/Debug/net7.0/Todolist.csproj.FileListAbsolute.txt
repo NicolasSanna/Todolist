@@ -847,3 +847,7 @@ C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\obj\Debug\net7.0\refint\Todol
 C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\obj\Debug\net7.0\Todolist.pdb
 C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\obj\Debug\net7.0\Todolist.genruntimeconfig.cache
 C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\obj\Debug\net7.0\ref\Todolist.dll
+C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\bin\Debug\net7.0\Todolist.staticwebassets.endpoints.json
+C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\obj\Debug\net7.0\staticwebassets.build.endpoints.json
+C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\obj\Debug\net7.0\staticwebassets\msbuild.Todolist.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Nicol\OneDrive\Documents\Projets\Todolist\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
